@@ -1,58 +1,115 @@
-REST API для некого кафе с такими сущностями как **Menu**, **SubMenu** и **Dish**.
+REST API for a cafe with entities like **Menu**, **SubMenu** and **Dish**.
 
-API написано на FastAPI с использованием ORM **SqlAlchemy**.
-**Обязательный префикс для всех запросов _/api/v1_**
+The API is written in FastAPI using ORM **SqlAlchemy**.
+**Required prefix for all requests _/api/v1_**
 
 ---
 
-### Запуск проекта:
-- устанавливаем себе на ПК Docker/Docker-Compose
+### Launch of the project:
+- install Docker/Docker-Compose on your PC
 
 
-- Выполняем команды одну за одной
-  - `docker-compose up -d`
-- После этого приложение запущено и доступно в браузере по ссылке http://127.0.0.1:8000/docs
+- Execute commands one by one
+   - `docker-compose up -d`
+- After that, the application is launched and available in the browser at the link http://127.0.0.1:8000/docs
 - API - http://127.0.0.1:8000/api/v1/menus
 
 
-- Для запуска тестов(app/tests)
-  - `docker-compose -f docker-compose.tests.yml up -d`
+- To run tests (app/tests)
+   - `docker-compose -f docker-compose.tests.yml up -d`
 
-Можем посмотреть результаты тестов в логах контейнера под названием `test_api` с помощью команды
+We can see the results of the tests in the logs of the container called `test_api` using the command
 - `docker logs test_api`
 
-### Генерация записей в БД для экспорта .xlsx файла
-- **POST** запрос с пустым телом на - `http://127.0.0.1:8000/api/v1/fill_db`
+### Generation of records in the database for exporting the .xlsx file
+- **POST** request with empty body to - `http://127.0.0.1:8000/api/v1/fill_db`
 
-### URL для создания task'ов в Celery
-- **POST** запрос с пустым телом на - `http://127.0.0.1:8000/api/v1/report/xlsx`
-- **GET** запрос с task_id в URL запроса - `http://127.0.0.1:8000/api/v1/report/xlsx/{task_id}`
-- **GET** запрос с именем файла на - `http://127.0.0.1:8000/api/v1/report/xlsx/download/f/{file_name}`
+### URL for creating tasks in Celery
+- **POST** request with empty body to - `http://127.0.0.1:8000/api/v1/report/xlsx`
+- **GET** request with task_id in request URL - `http://127.0.0.1:8000/api/v1/report/xlsx/{task_id}`
+- **GET** request with filename to - `http://127.0.0.1:8000/api/v1/report/xlsx/download/f/{file_name}`
 
-### URL для запросов основного меню:
-- GET /menus - получение всех меню
-- POST /menus - создание меню
-- GET /menus/{menu_id} - подробная информация о конкретном меню
-- PATCH /menus/{menu_id} - обновление конкретного меню
-- DELETE /menus/{menu_id} - удаление конкретного меню
+### URL for main menu requests:
+- GET /menus - get all menus
+- POST /menus - menu creation
+- GET /menus/{menu_id} - detailed information about a specific menu
+- PATCH /menus/{menu_id} - update a specific menu
+- DELETE /menus/{menu_id} - delete a specific menu
 
-**Дополнительно в ответе на GET запросы присутствует количество всех подменю и блюд**
-- submenus_count
+**Additionally, the response to GET requests contains the number of all submenus and dishes**
+-submenus_count
 - dishes_count
 
-### URL для запросов подменю:
-- GET /menus/{menu_id}/submenus - получение всех подменю конкретного меню
-- POST /menus/{menu_id}/submenus - создание подменю
-- GET /menus/{menu_id}/submenus/{submenu_id} - подробная информация о конкретном подменю
-- PATCH /menus/{menu_id}/submenus/{submenu_id} - обновление конкретного подменю
-- DELETE /menus/{menu_id}/submenus/{submenu_id} - удаление конкретного подменю
+### URL for submenu requests:
+- GET /menus/{menu_id}/submenus - get all submenus of a specific menu
+- POST /menus/{menu_id}/submenus - create a submenu
+- GET /menus/{menu_id}/submenus/{submenu_id} - detailed information about a specific submenu
+- PATCH /menus/{menu_id}/submenus/{submenu_id} - update a specific submenu
+- DELETE /menus/{menu_id}/submenus/{submenu_id} - delete a specific submenu
 
-**Дополнительно в ответе на GET запросы присутствует количество всех блюд**
+**Additionally, the response to GET requests contains the number of all dishes**
 - dishes_count
 
-### URL для запросов блюд:
-- GET /menus/{menu_id}/submenus/{submenu_id}/dishes - получение всех блюд
-- POST /menus/{menu_id}/submenus/{submenu_id}/dishes - создание блюда
-- GET /menus/{menu_id}/submenus/{submenu_id}/dishes/{dish_id} - подробная информация о конкретном блюде
-- PATCH /menus/{menu_id}/submenus/{submenu_id}/dishes/{dish_id} - обновление конкретного блюда
-- DELETE /menus/{menu_id}/submenus/{submenu_id}/dishes/{dish_id} - удаление конкретного блюда
+### URL for dish requests:
+- GET /menus/{menu_id}/submenus/{submenu_id}/dishes - get all dishes
+- POST /menus/{menu_id}/submenus/{submenu_id}/dishes - create a dish
+- GET /menus/{menu_id}/submenus/{submenu_id}/dishes/{dish_id} - detailed information about a particular dish
+- PATCH /menus/{menu_id}/submenus/{submenu_id}/dishes/{dish_id} - update a specific dish
+- DELETE /menus/{menu_id}/submenus/{submenu_id}/dishes/{dish_id} - delete a specific dishREST API for a cafe with entities like **Menu**, **SubMenu** and **Dish**.
+
+The API is written in FastAPI using ORM **SqlAlchemy**.
+**Required prefix for all requests _/api/v1_**
+
+---
+
+### Launch of the project:
+- install Docker/Docker-Compose on your PC
+
+
+- Execute commands one by one
+   - `docker-compose up -d`
+- After that, the application is launched and available in the browser at the link http://127.0.0.1:8000/docs
+- API - http://127.0.0.1:8000/api/v1/menus
+
+
+- To run tests (app/tests)
+   - `docker-compose -f docker-compose.tests.yml up -d`
+
+We can see the results of the tests in the logs of the container called `test_api` using the command
+- `docker logs test_api`
+
+### Generation of records in the database for exporting the .xlsx file
+- **POST** request with empty body to - `http://127.0.0.1:8000/api/v1/fill_db`
+
+### URL for creating tasks in Celery
+- **POST** request with empty body to - `http://127.0.0.1:8000/api/v1/report/xlsx`
+- **GET** request with task_id in request URL - `http://127.0.0.1:8000/api/v1/report/xlsx/{task_id}`
+- **GET** request with filename to - `http://127.0.0.1:8000/api/v1/report/xlsx/download/f/{file_name}`
+
+### URL for main menu requests:
+- GET /menus - get all menus
+- POST /menus - menu creation
+- GET /menus/{menu_id} - detailed information about a specific menu
+- PATCH /menus/{menu_id} - update a specific menu
+- DELETE /menus/{menu_id} - delete a specific menu
+
+**Additionally, the response to GET requests contains the number of all submenus and dishes**
+-submenus_count
+- dishes_count
+
+### URL for submenu requests:
+- GET /menus/{menu_id}/submenus - get all submenus of a specific menu
+- POST /menus/{menu_id}/submenus - create a submenu
+- GET /menus/{menu_id}/submenus/{submenu_id} - detailed information about a specific submenu
+- PATCH /menus/{menu_id}/submenus/{submenu_id} - update a specific submenu
+- DELETE /menus/{menu_id}/submenus/{submenu_id} - delete a specific submenu
+
+**Additionally, the response to GET requests contains the number of all dishes**
+- dishes_count
+
+### URL for dish requests:
+- GET /menus/{menu_id}/submenus/{submenu_id}/dishes - get all dishes
+- POST /menus/{menu_id}/submenus/{submenu_id}/dishes - create a dish
+- GET /menus/{menu_id}/submenus/{submenu_id}/dishes/{dish_id} - detailed information about a particular dish
+- PATCH /menus/{menu_id}/submenus/{submenu_id}/dishes/{dish_id} - update a specific dish
+- DELETE /menus/{menu_id}/submenus/{submenu_id}/dishes/{dish_id} - delete a specific dish
